@@ -1,0 +1,25 @@
+<p>ACCIONES DEL USUARIO</p>
+
+<mat-nav-list>
+
+    <a mat-list-item (click)="onEditCamposUsuario()">
+        <span matListItemTitle>Editar Usuario</span>
+        <span matLine>Editar los campos principales</span>
+        <span matListItemAvatar class="avatar"><mat-icon>security</mat-icon></span>
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <a mat-list-item (click)="onEditNombreUsuario()">
+        <span matListItemTitle>Cambiar Nombre de Usuario</span>
+        <span matLine>Editar los campos principales</span>
+        <span matListItemAvatar class="avatar"><mat-icon>priority_high</mat-icon></span>
+    </a>
+
+    <a mat-list-item (click)="onEditPassword()">
+        <span matListItemTitle>Cambiar Contraseña</span>
+        <span matLine>Editar los campos principales</span>
+        <span matListItemAvatar class="avatar"><mat-icon>vpn_key</mat-icon></span>
+    </a>
+
+</mat-nav-list>

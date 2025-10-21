@@ -1,0 +1,67 @@
+@if(isSubmitting){
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+<p>NUEVA MATERIA PRIMA</p>
+
+<div class="content">
+    <mat-dialog-content>
+        <form [formGroup]="formMateriaPrima">
+
+            <mat-form-field>
+                <mat-label>Nombre Materia Prima:</mat-label>
+                <input type="text" matInput formControlName="nombreMateriaPrima" (input)="toUpperCaseField('nombreMateriaPrima')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Marca: (Opcional)</mat-label>
+                <input type="text" matInput formControlName="marca" (input)="toUpperCaseField('marca')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Modelo: (Opcional)</mat-label>
+                <input type="text" matInput formControlName="modelo" (input)="toUpperCaseField('modelo')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Unidad de Medida:</mat-label>
+                <mat-select formControlName="unidadMedida">
+                    @for (medida of unidadMedidad; track medida) {
+                        <mat-option [value]="medida">{{medida}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Stock:</mat-label>
+                <input type="number" matInput formControlName="stockActual" readonly=""/>
+                <mat-icon matSuffix>format_list_numbered</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Proveedor Compra:</mat-label>
+                <input type="text" matInput [value]="nombreComercial" readonly=""/>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+           <mat-form-field class="descripciones">
+                <mat-label>Descripción:</mat-label>
+                <textarea matInput formControlName="descripcion"
+                    cdkTextareaAutosize=""
+                    cdkAutosizeMinRows="2"
+                    cdkAutosizeMaxRows="4"
+                    (input)="toUpperCaseField('descripcion')">
+
+                </textarea>
+           </mat-form-field>
+
+           <input type="text" hidden formControlName="idProveedor">
+
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button mat-dialog-close="" (click)="closeModal()"><mat-icon>close</mat-icon>Cancelar</button>
+        <button mat-flat-button [disabled]="formMateriaPrima.invalid" (click)="savedMateriaPrima()"><mat-icon>check</mat-icon>Registrar</button>
+    </mat-dialog-actions>
+</div>

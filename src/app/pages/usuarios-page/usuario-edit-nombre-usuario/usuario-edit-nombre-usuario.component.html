@@ -1,0 +1,30 @@
+@if (isSubmitting){
+    <mat-progress-bar mode="query"></mat-progress-bar>
+}
+
+<p>CAMBIAR NOMBRE DE USUARIO</p>
+
+@if(formUsuario){
+    <div class="content">
+        <mat-dialog-content>
+            <form [formGroup]="formUsuario">
+                <mat-form-field>
+                    <mat-label>Nombre de Usuario Actual </mat-label>
+                    <input type="text" matInput formControlName="nombreUsuario" readonly="">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Nombre de Usuario Nuevo </mat-label>
+                    <input type="text" matInput formControlName="nuevoNombreUsuario">
+                </mat-form-field>
+
+
+            </form>
+        </mat-dialog-content>
+    </div>
+
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button mat-dialog-close=""><mat-icon>close</mat-icon>Cancelar</button>
+        <button mat-flat-button [disabled]="formUsuario.invalid" (click)="updateNombreUsuario()"><mat-icon>check</mat-icon>Actualizar</button>
+    </mat-dialog-actions>
+}

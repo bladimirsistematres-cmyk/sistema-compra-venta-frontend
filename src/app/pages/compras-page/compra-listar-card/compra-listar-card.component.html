@@ -1,0 +1,49 @@
+@if(isLoadingResult || isRateLimitReached){
+    <div class="example-loading-shade">
+        @if(isLoadingResult){
+            <mat-spinner></mat-spinner>
+        }
+        @if(isRateLimitReached){
+            <div class="example-rate-limit-reached">
+                ...
+            </div>
+        }
+    </div>
+}
+
+<div class="example-container">
+    @for(compra of compras; track compra){
+        <mat-card>
+            <div class="card-title">
+                <mat-card-title>{{compra.nombreMateriaPrima}}</mat-card-title>
+                <mat-card-subtitle>{{compra.idCompra}}</mat-card-subtitle>
+            </div>
+            <mat-card-content>
+
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Proveedor: </strong></span><span>{{compra.nombreComercial}}</span>
+                </div>
+
+                
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Materia Prima: </strong></span><span>{{compra.nombreMateriaPrima}}</span>
+                </div>
+
+                
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Cantidad: </strong></span><span>{{compra.cantidadUnidadMedida}}</span>
+                </div>
+
+                
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Unidad de Medida: </strong></span><span>{{compra.unidadMedida}}</span>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    }
+</div>

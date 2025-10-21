@@ -1,0 +1,103 @@
+<mat-drawer-container class="drawer-container" autosize="">
+    <mat-drawer #drawer class="drawe-sidenav" mode="over">
+        <div class="navbar">
+            <span class="title">Empresa</span>
+
+            <!-- USUARIOS -->
+            <a mat-button [matMenuTriggerFor]="usuario" (menuOpened)="isMenuOpenUsuarios = true" (menuClosed)="isMenuOpenUsuarios = false">
+                <mat-icon>
+                    @if(isMenuOpenUsuarios){
+                        keyboard_double_arrow_down
+                    }@else{
+                        keyboard_double_arrow_left
+                    }
+                </mat-icon>
+                USUARIOS
+            </a>
+            <mat-menu #usuario="matMenu">
+                <button mat-menu-item (click)="drawer.close()" [routerLink]="['/usuario/usuario-presentación']">
+                    <mat-icon>person</mat-icon>
+                    <span>Usuarios</span>
+                </button>
+            </mat-menu>
+
+            <!-- PROVEEDORES -->
+            <a mat-button [matMenuTriggerFor]="proveedor"(menuOpened)="isMenuOpenProveedor = true"(menuClosed)="isMenuOpenProveedor = false">
+                <mat-icon>
+                    @if (isMenuOpenProveedor) {
+                        keyboard_double_arrow_down
+                    }@else {
+                        keyboard_double_arrow_left
+                    }
+                </mat-icon>
+                PROVEEDOR
+            </a>
+            <mat-menu #proveedor="matMenu"> 
+                <button mat-menu-item (click)="drawer.close()" [routerLink]="['/proveedor/proveedor-presentacion']">
+                    <mat-icon>lists</mat-icon>
+                    <span>Proveedores</span>
+                </button>
+                <button mat-menu-item (click)="drawer.close()" [routerLink]="['/proveedor/representante-presentacion']">
+                    <mat-icon>group</mat-icon>
+                    <span>Representantes</span>
+                </button>
+                <button mat-menu-item (click)="drawer.close()" [routerLink]="['/proveedor/pais-presentacion']">
+                    <mat-icon>flag</mat-icon>
+                    <span>Paises</span>
+                </button>
+                <button mat-menu-item (click)="drawer.close()" [routerLink]="['/proveedor/ciudad-presentacion']">
+                    <mat-icon>apartment</mat-icon>
+                    <span>Ciudades</span>
+                </button>
+            </mat-menu>
+
+            <!-- MATERIA PRIMA -->
+            <a mat-button [matMenuTriggerFor]="materiaPrima" (menuOpened)="isMenuOpenMateriaPrima = true" (menuClosed)="isMenuOpenMateriaPrima = false"><mat-icon>
+                @if(isMenuOpenMateriaPrima){
+                    keyboard_double_arrow_down
+                }@else{
+                    keyboard_double_arrow_left
+                }
+            </mat-icon>MATERIA PRIMA</a>
+
+            <mat-menu #materiaPrima>
+                <button mat-menu-item (click)="drawer.close()" [routerLink]="['/materia-prima/materia-prima-presentacion']">
+                    <mat-icon>inventory_2</mat-icon>
+                    <span>Materia Prima</span>
+                </button>
+            </mat-menu>
+
+            <!-- COMPRAS -->
+            <a mat-button [matMenuTriggerFor]="compra" (menuOpened)="isCompra = true" (menuClosed)="isCompra = false">
+                <mat-icon>
+                    @if(isCompra){
+                        keyboard_double_arrow_down
+                    }@else {
+                        keyboard_double_arrow_left
+                    }
+                </mat-icon>
+                COMPRA
+            </a>
+
+            <mat-menu #compra>
+                <button mat-menu-item (click)="drawer.close()" [routerLink]="['/compra/compra-presentacion']">
+                    <mat-icon>shopping_basket</mat-icon>
+                    <span>Compras Generales</span>
+                </button>
+            </mat-menu>
+
+        </div>
+    </mat-drawer>
+    <div class="sidenav-content">
+        <mat-toolbar>
+            <div><button mat-mini-fab (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button></div>
+            <div class="items-sidenav">
+                <button mat-mini-fab matTooltip="Salir" (click)="logout()"><mat-icon>logout</mat-icon></button>
+                <button mat-mini-fab matTooltip="Usuario"><mat-icon>face</mat-icon></button>
+            </div>
+        </mat-toolbar>
+        <div class="sidenav-content-dinamic">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-drawer-container>

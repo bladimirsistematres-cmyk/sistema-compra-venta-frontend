@@ -1,0 +1,31 @@
+@defer (when !cargando) {
+    
+    <div class="presentation">
+
+        <button mat-button><p>Usuarios</p></button>
+
+    </div>
+    
+    @if (isMovile()){
+        <app-usuario-listar-card
+        [usuarios]="usuarios"
+        [isLoadingResult]="isCargando"
+        [isRateLimitReached]="errorConexion"
+        (refrescar)="onOpenOptionUsuario($event)"
+        >
+
+        </app-usuario-listar-card>
+    }@else {
+        <app-usuario-listar-tabla
+            [usuarios]="usuarios"
+            [isLoadingResult]="isCargando"
+            [isRateLimitReached]="errorConexion"
+            (editarUsuario)="onEditUsuario($event)"
+            (editarNombreUsuario)="onEditarNombreUsuario($event)"
+            (editarPassword)="onEditarPasswordUsuario($event)">
+        </app-usuario-listar-tabla> 
+    }
+}@placeholder {
+    <p>Cargando Usuarios...</p>
+    <app-progress-animation></app-progress-animation>
+}

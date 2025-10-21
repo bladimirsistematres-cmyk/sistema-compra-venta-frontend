@@ -1,0 +1,104 @@
+@if (isSubmitting){
+    <mat-progress-bar></mat-progress-bar>
+}
+
+
+<p>NUEVO ITEM</p>
+
+<div class="content">
+    <mat-dialog-content>
+        
+        <form [formGroup]="formItemProveedor">
+ 
+             <mat-form-field appearance="outline">
+                <mat-label>PROVEEDOR PERTENECIENTE:</mat-label>
+                <input type="text" matInput [value]="nombreComercial" readonly=""/>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>ITEM:</mat-label>
+                <mat-select formControlName="nombreItemProveedor">
+                    @for(itemNuevo of nombresItems; track itemNuevo){
+                        <mat-option [value]="itemNuevo">{{itemNuevo}}</mat-option>
+                    }   
+                </mat-select>
+                <mat-icon matSuffix>lists</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>MARCA:</mat-label>
+                <input type="text" matInput formControlName="marca" (input)="toUpperCaseField('nombreItemProveedor')"/>
+                <mat-icon matSuffix>edit</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>MODELO:</mat-label>
+                <input type="text" matInput formControlName="modelo" (input)="toUpperCaseField('nombreItemProveedor')"/>
+                <mat-icon matSuffix>edit</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>UNIDAD COMPRA:</mat-label>
+                <mat-select formControlName="unidadCompra">
+                    @for(compra of unidadCompras; track compra){
+                        <mat-option [value]="compra">{{compra}}</mat-option>
+                    }   
+                </mat-select>
+                <mat-icon matSuffix>lists</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>CANTIDAD COMPRA:</mat-label>
+                <input type="text" matInput formControlName="cantidadUnidadCompra" (input)="toUpperCaseField('nombreItemProveedor')"/>
+                <mat-icon matSuffix>edit</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>UNIDAD MEDIDA:</mat-label>
+                <mat-select formControlName="unidadMedida">
+                    @for(medida of unidadMedidas; track medida){
+                        <mat-option [value]="medida">{{medida}}</mat-option>
+                    }   
+                </mat-select>
+                <mat-icon matSuffix>lists</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>CANTIDAD MEDIDA:</mat-label>
+                <input type="text" matInput formControlName="cantidadUnidadMedida" (input)="toUpperCaseField('nombreItemProveedor')"/>
+                <mat-icon matSuffix>edit</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>PRECIO:</mat-label>
+                <input type="text" matInput formControlName="precio" (input)="toUpperCaseField('nombreItemProveedor')"/>
+                <mat-icon matSuffix>edit</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>TIPO ITEM:</mat-label>
+                <mat-select formControlName="tipoItem">
+                    @for(item of tipoItems; track item){
+                        <mat-option [value]="item">{{item}}</mat-option>
+                    }   
+                </mat-select>
+                <mat-icon matSuffix>lists</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>DESCRIPCIÓN:</mat-label>
+                <input type="text" matInput formControlName="descripcion" (input)="toUpperCaseField('descripcion')"/>
+                <mat-icon matSuffix>sell</mat-icon>
+            </mat-form-field>
+
+            <input type="text" hidden formControlName="idProveedor">
+
+        </form>
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button mat-dialog-close=""><mat-icon>close</mat-icon>Cancelar</button>
+        <button mat-flat-button [disabled]="formItemProveedor.invalid" (click)="saveItemProveedor()"><mat-icon>check</mat-icon>Registrar</button>
+    </mat-dialog-actions>
+</div>

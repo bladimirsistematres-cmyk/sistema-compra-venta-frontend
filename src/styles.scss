@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+@use '../src/app/styles_theme-colors.scss' as theme-colors;
+@use '../src/app/pages/proveedor-page/proveedor/proveedor-listar/proveedor-listar.component.scss' as menu;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: theme-colors.$primary-palette,
+    ),
+    typography: Onest,
+    density: 0,
+  ));
+}
+
+body{
+  margin: 0;
+  padding: 8px;
+  font-family: "Onest", sans-serif;
+  background: #c0c0c0;
+}

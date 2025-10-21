@@ -1,0 +1,39 @@
+<div class="container-form">
+    <form [formGroup]="formLogin">
+
+        <p>EMPRESA</p>
+
+        <div class="form-internal">
+
+            <mat-form-field>
+                <mat-label>Usuario</mat-label>
+                <input type="text" matInput formControlName="nombreUsuario" autocomplete="off">
+                <mat-icon matSuffix>person</mat-icon>
+                @if(formLogin.get('nombreUsuario')?.hasError("maxlength")){
+                    <mat-error>Máximo 20 caracteres</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput formControlName="password" autocomplete="off">
+                <mat-icon matSuffix>key</mat-icon>
+                @if(formLogin.get('password')?.hasError("maxlength")){
+                    <mat-error>Máximo 8 caracteres</mat-error>
+                }
+            </mat-form-field>
+
+        </div>
+        
+        <button mat-flat-button (click)="loginUser()" [disabled]="formLogin.invalid">Iniciar Sesión</button>
+
+        @if(isLoading){
+            <div class="overlay">
+                <mat-spinner diameter="60"></mat-spinner>
+                Iniciando Sesión...
+            </div>
+        }
+    </form>
+
+
+</div>

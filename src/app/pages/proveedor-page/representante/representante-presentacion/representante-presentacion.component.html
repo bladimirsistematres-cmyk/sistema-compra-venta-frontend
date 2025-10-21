@@ -1,0 +1,23 @@
+
+@defer (when !cargando) {
+    <p>Representantes</p>
+
+    <app-representante-filtrar 
+        (filtrar)="onFiltrar($event)"
+        [isCargando]="isCargando">
+    </app-representante-filtrar>
+
+    <app-representante-listar
+        [representantes]="representantes"
+        [totalElementos]="totalElementos"
+        [paginaActual]="paginaActual"
+        [tamanioPagina]="tamanioPagina"
+        [isLoadingResult]="isCargando"
+        [isRateLimitReached]="errorConexion"
+        (paginaCambiada)="onPaginaCambiada($event)"
+        (editarRepresentante)="onEditarRepresentante($event)">
+    </app-representante-listar>
+}@placeholder {
+    <p>Cargando Representantes...</p>
+    <app-progress-animation></app-progress-animation>
+}

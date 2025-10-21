@@ -1,0 +1,162 @@
+<div class="example-container mat-elevation-z8">
+
+    @if(isLoadingResult || isRateLimitReached){
+        <div class="example-loading-shade">
+            @if(isLoadingResult){
+                <mat-spinner></mat-spinner>
+            }
+            @if(isRateLimitReached){
+                <div class="example-rate-limit-reached">
+                    ...
+                </div>
+            }
+        </div>
+    }
+
+    <div class="example-table-container">
+        <table mat-table [dataSource]="dataSource" class="example-table">
+          
+          <ng-container matColumnDef="idProveedor">
+            <th mat-header-cell *matHeaderCellDef>Id.</th>
+            <td mat-cell *matCellDef="let proveedor">{{ proveedor.idProveedor }}</td>
+          </ng-container>
+        
+          <ng-container matColumnDef="nombreComercial">
+            <th mat-header-cell *matHeaderCellDef>Nombre Comercial.</th>
+            <td mat-cell *matCellDef="let proveedor">
+              {{ proveedor.nombreComercial }}
+            </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="identificacionFiscal">
+            <th mat-header-cell *matHeaderCellDef>Ci. / Nit.</th>
+            <td mat-cell *matCellDef="let proveedor">
+              {{ proveedor.identificacionFiscal }}
+            </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="fechaCreacion">
+            <th mat-header-cell *matHeaderCellDef>Fecha Creación.</th>
+            <td mat-cell *matCellDef="let proveedor">
+              {{ proveedor.fechaCreacion | date : "yyyy-MM-dd" }}
+            </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="tipoProveedor">
+            <th mat-header-cell *matHeaderCellDef>Tipo Proveedor.</th>
+            <td mat-cell *matCellDef="let proveedor">{{ proveedor.tipoProveedor }}</td>
+          </ng-container>
+        
+          <ng-container matColumnDef="representante">
+            <th mat-header-cell *matHeaderCellDef>Representante.</th>
+            <td mat-cell *matCellDef="let proveedor">
+              {{ proveedor.tieneRepresentantes ? "SI" : "NO" }}
+            </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones.</th>
+            <td mat-cell *matCellDef="let proveedor">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="acciones"
+                matTooltip="Acciones"
+                matTooltipPosition="left"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+        
+              <!-- MENU -->
+              <mat-menu #acciones="matMenu" xPosition="before" class="custom-panel">
+
+                <!-- Cambiar nombre del proveedor -->
+                <button mat-menu-item class="btn-acciones" (click)="cambiarNombreProveedor.emit({
+                  idProveedor: proveedor.idProveedor, 
+                  nombreComercial: proveedor.nombreComercial
+                })">
+                  <mat-icon>edit</mat-icon>
+                  <span>Cambiar Nombre</span>
+                </button>
+
+                <!-- Editar todos los campos del proveedor -->
+                <button mat-menu-item class="btn-acciones" (click)="editarProveedor.emit(proveedor.idProveedor)">
+                  <mat-icon>table_edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+        
+                <mat-divider></mat-divider>
+        
+                <!-- Crear materia prima para un proveedor -->
+                <button mat-menu-item class="btn-acciones" (click)="crearMateriaPrima.emit({
+                  idProveedor: proveedor.idProveedor,
+                  nombreComercial: proveedor.nombreComercial
+                })">
+                  <mat-icon>add_shopping_cart</mat-icon>
+                  <span>Crear Materia Prima</span>
+                </button>
+
+                <!-- Listar materias prima de un proveedor especifico -->
+                <button mat-menu-item class="btn-acciones" (click)="getAllMateriaPrimaByProveedor.emit({
+                  idProveedor: proveedor.idProveedor,
+                  nombreComercial: proveedor.nombreComercial
+                })">
+                  <mat-icon>production_quantity_limits</mat-icon>
+                  <span>Ver Materia Prima</span>
+                </button>
+                
+                <mat-divider></mat-divider>
+
+                <!-- Listar compras de un proveedor especifico -->
+                <button mat-menu-item class="btn-acciones" (click)="getAllComprasByProveedor.emit({
+                  idProveedor: proveedor.idProveedor,
+                  nombreComercial: proveedor.nombreComercial
+                })">
+                  <mat-icon>history</mat-icon>
+                  <span>Compras Realizadas</span>
+                </button>
+
+                <mat-divider></mat-divider>
+        
+                <!-- Crear un representante para un proveedor especifico -->
+                <button mat-menu-item class="btn-acciones" (click)="crearRepresentante.emit({
+                  idProveedor: proveedor.idProveedor, 
+                  nombreComercial: proveedor.nombreComercial
+                })">
+                  <mat-icon>person_add</mat-icon>
+                  <span>Agregar Representante</span>
+                </button>
+
+                <!-- Listar representantes de un proveedor especifico -->
+                <button mat-menu-item class="btn-acciones" (click)="getAllRepresentantesByIdProveedor.emit({
+                  idProveedor: proveedor.idProveedor,
+                  nombreComercial: proveedor.nombreComercial
+                })">
+                  <mat-icon>group</mat-icon>
+                  <span>Ver Representantes</span>
+                </button>
+        
+                <mat-divider></mat-divider>
+        
+                <!-- Informacion completa del proveedor -->
+                <button mat-menu-item class="btn-acciones" (click)="detallesProveedor.emit(proveedor.idProveedor)">
+                  <mat-icon>info</mat-icon>
+                  <span>Información del Proveedor</span>
+                </button>
+              </mat-menu>
+        
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="columms"></tr>
+          <tr mat-row *matRowDef="let row; columns: columms"></tr>
+        
+        </table>
+    
+        <mat-paginator
+            [length]="totalElementos"
+            [pageSize]="tamanioPagina" 
+        >
+        </mat-paginator>
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+<div class="content-title">
+    <p>COMPRAS A {{nombreMateriaPrima}}</p>
+    <button mat-icon-button matTooltip="Cerrar" (click)="closeModal()"><mat-icon>close</mat-icon></button>
+</div>
+
+@if (isLoading){
+    <mat-progress-bar mode="query"></mat-progress-bar>
+}
+
+@else if (!isLoading && comprasMateriasPrimas.length === 0){
+    <p class="advertencia">La materia prima <strong>{{nombreMateriaPrima}} no tiene compras registradas</strong></p>
+}
+
+@else {
+    <div class="content">
+
+        <mat-dialog-content>
+
+            @for (materiaPrima of comprasMateriasPrimas; track materiaPrima) {
+                <mat-card>
+                    <mat-card-content>
+                        <p><strong>UNIDAD DE COMPRA: </strong>{{materiaPrima.detalles.unidadCompra}}</p>
+                        <p><strong>CANTIDAD DE COMPRA: </strong>{{materiaPrima.detalles.cantidadCompra}}</p>
+                        <p><strong>UNIDAD DE MEDIDA: </strong>{{materiaPrima.detalles.unidadMedida}}</p>
+                        <p><strong>CANTIDAD DE UNIDADES COMPRADAS: </strong>{{materiaPrima.detalles.cantidadMedida}}</p>
+                        <p><strong>TOTAL DE COMPRA: </strong>{{materiaPrima.totalCompra}}</p>
+                        <p><strong>FECHA DE LA COMPRA: </strong>{{materiaPrima.fechaCompra}}</p>
+                        <p><strong>PROVEEDOR: </strong>{{materiaPrima.nombreComercial}}</p>
+                    </mat-card-content>
+                </mat-card>
+            }
+
+        </mat-dialog-content>
+
+    </div>
+}

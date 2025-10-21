@@ -1,0 +1,91 @@
+<div class="example-container mat-elevation-z8">
+
+    @if (isLoadingResult || isRateLimitReached){
+        <div class="example-loading-shade">
+            @if (isLoadingResult){
+                <mat-spinner></mat-spinner>
+            }
+            @if(isRateLimitReached){
+                <div class="example-rate-limit-reached">
+                    ...
+                </div>
+            }
+        </div>
+    }
+
+    <div class="example-table-container">
+        <table mat-table [dataSource]="dataSource" class="example-table">
+
+            <ng-container matColumnDef="id_usuario">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let user">{{user.id_usuario}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombres">
+                <th mat-header-cell *matHeaderCellDef>Nombres</th>
+                <td mat-cell *matCellDef="let user">{{user.nombres}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="apellidoPaterno">
+                <th mat-header-cell *matHeaderCellDef>Apellido Paterno</th>
+                <td mat-cell *matCellDef="let user">{{user.apellidoPaterno}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="apellidoMaterno">
+                <th mat-header-cell *matHeaderCellDef>Apellido Materno</th>
+                <td mat-cell *matCellDef="let user">{{user.apellidoMaterno}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef>Rol</th>
+                <td mat-cell *matCellDef="let user">{{user.role}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let user">
+                    <button
+                        mat-icon-button
+                        [matMenuTriggerFor]="accionesUsuarios"
+                        matTooltip="Acciones"
+                        matTooltipPosition="left"    
+                    >
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+
+                    <mat-menu #accionesUsuarios="matMenu" xPosition="before" class="custom-panel">
+
+                        <button mat-menu-item (click)="editarUsuario.emit(user.id_usuario)">
+                            <mat-icon>security</mat-icon>
+                            <span>Editar Datos</span>
+                        </button>
+
+                        <mat-divider></mat-divider>
+
+                        <button mat-menu-item (click)="editarNombreUsuario.emit({
+                            id_usuario: user.id_usuario,
+                            nombreUsuario: user.nombreUsuario
+                        })">
+                            <mat-icon>priority_high</mat-icon>
+                            <span>Cambiar Nombre de Usuario</span>
+                        </button>
+
+                        <button mat-menu-item (click)="editarPassword.emit(user.id_usuario)">
+                            <mat-icon>vpn_key</mat-icon>
+                            <span>Cambiar Contraseña</span>
+                        </button>
+
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columns"></tr>
+            <tr mat-row *matRowDef="let row; columns: columns"></tr>
+
+        </table>
+
+
+
+    </div>
+
+</div>

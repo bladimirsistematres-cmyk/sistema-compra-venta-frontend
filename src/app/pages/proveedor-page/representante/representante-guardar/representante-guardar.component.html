@@ -1,0 +1,177 @@
+@if (isSubmitting){
+    <mat-progress-bar mode="query"></mat-progress-bar>
+}
+
+<p>AGREGAR REPRESENTANTE</p>
+
+<div class="content">
+    <mat-dialog-content>
+
+        <form [formGroup]="formRepresentante">
+
+            <mat-form-field>
+                <mat-label>Nombre del Representante: </mat-label>
+                <input type="text" matInput formControlName="nombre" (input)="toUpperCaseField('nombre')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Cargo: </mat-label>
+                <input type="text" matInput formControlName="cargo" (input)="toUpperCaseField('cargo')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Carnet de Identidad: </mat-label>
+                <input type="text" matInput formControlName="cedulaIdentidad" (input)="toUpperCaseField('cedulaIdentidad')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Género: </mat-label>
+                <mat-select formControlName="generoRepresentante">
+                    @for(genero of generos; track genero){
+                        <mat-option [value]="genero">{{genero}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Teléfono Fijo: (Opcional) </mat-label>
+                <input type="number" matInput formControlName="telefonoFijo" (input)="toUpperCaseField('telefonoFijo')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Teléfono Celular: </mat-label>
+                <input type="number" matInput formControlName="telefonoCelular" (input)="toUpperCaseField('telefonoCelular')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Correo Electrónico: (Opcional) </mat-label>
+                <input type="email" matInput formControlName="correoElectronico" (input)="toUpperCaseField('correoElectronico')"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Dirección: (Opcional) </mat-label>
+                <input type="text" matInput formControlName="direccion" (input)="toUpperCaseField('direccion')"/>
+            </mat-form-field>
+
+            <mat-form-field class="proveedor">
+                <mat-label>Proveedor Relacionado: </mat-label>
+                <input type="text" matInput [value]="nombreComercial" readonly=""/>
+            </mat-form-field>
+
+            <input type="number" hidden formControlName="idProveedor"> 
+
+            <mat-form-field class="observaciones">
+                <mat-label>Observaciones: </mat-label>
+                <textarea matInput formControlName="observaciones"
+                    cdkTextareaAutosize=""
+                    cdkAutosizeMinRows="2"
+                    cdkAutosizeMaxRows="4"
+                    (input)="toUpperCaseField('observaciones')">
+            </textarea>
+            </mat-form-field>
+
+        </form>
+
+    </mat-dialog-content>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close="" (click)="closeModal()"><mat-icon>close</mat-icon>CANCELAR</button>
+    <button mat-flat-button [disabled]="formRepresentante.invalid" (click)="addRepresentanteForProveedor()"><mat-icon>check</mat-icon>AGREGAR</button>
+</mat-dialog-actions>
+
+<!-- <p>
+    @if(!representante){
+        REGISTRAR REPRESENTANTE
+    }@else {
+        EDITAR REPRESENTANTE
+    }
+</p>
+
+@if(formRepresentante){
+    <div class="content">
+    
+        <form [formGroup]="formRepresentante">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre </mat-label>
+                <input type="text" matInput formControlName="nombre"/>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Cargo </mat-label>
+                <input type="text" matInput formControlName="cargo"/>
+                <mat-icon matSuffix>supervisor_account</mat-icon>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Carnet Identidad </mat-label>
+                <input type="text" matInput formControlName="cedulaIdentidad"/>
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Genero </mat-label>
+                <mat-select formControlName="generoRepresentante">
+                    @for(genero of generos; track genero){
+                        <mat-option [value]="genero">{{genero}}</mat-option>
+                    }
+                </mat-select>
+                <mat-icon matSuffix>wc</mat-icon>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Telefono Fijo </mat-label>
+                <input type="number" matInput formControlName="telefonoFijo"/>
+                <mat-icon matSuffix>call</mat-icon>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Telefono Celular </mat-label>
+                <input type="number" matInput formControlName="telefonoCelular"/>
+                <mat-icon matSuffix>smartphone</mat-icon>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Correo Electrónico </mat-label>
+                <input type="email" matInput formControlName="correoElectronico"/>
+                <mat-icon matSuffix>mail</mat-icon>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Dirección </mat-label>
+                <input type="text" matInput formControlName="direccion"/>
+                <mat-icon matSuffix>location_on</mat-icon>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Provedores </mat-label>
+                <mat-select formControlName="idProveedor">
+                    @for(proveedor of proveedores; track proveedor){
+                        <mat-option [value]="proveedor.idProveedor">{{proveedor.nombreComercial}}</mat-option>
+                    }
+                </mat-select>
+                <mat-icon matSuffix>wc</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Observaciones: </mat-label>
+                <textarea matInput formControlName="observaciones"></textarea>
+                <mat-icon matSuffix>note</mat-icon>
+            </mat-form-field>
+    
+        </form>
+    
+    </div>
+    
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close="" ><mat-icon>close</mat-icon>Cancelar</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveRepresentante()"><mat-icon>check</mat-icon>
+            @if(!representante){
+                Registrar 
+            }@else {
+                Actualizar
+            }
+        </button>
+    </mat-dialog-actions>
+} -->

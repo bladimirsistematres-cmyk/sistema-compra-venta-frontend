@@ -1,0 +1,67 @@
+p{
+    text-align: center;
+    font-size: 21px;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 7px;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+
+mat-dialog-actions{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.content{
+    position: relative;
+}
+
+.content-placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 7px;
+    padding: 10px 20px;
+}
+
+.overlay-cargando{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.contentido-overlay{
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 850px){
+    form{
+        grid-template-columns: 1fr;
+    }
+
+    form mat-form-field:last-child {
+        grid-column: auto;
+    }
+}

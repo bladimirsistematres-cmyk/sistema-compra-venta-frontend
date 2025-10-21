@@ -1,0 +1,65 @@
+@defer (when !cargando){
+
+    <div class="presentation">
+
+        <div class="presentation-btn">
+            <button 
+                mat-button 
+                [matMenuTriggerFor]="menuProveedor" class="btn-presentacion" 
+                (menuOpened)="openMenuProveedor = true"
+                (menuClosed)="openMenuProveedor = false">
+                
+                Proveedores 
+                <mat-icon>
+                    @if (openMenuProveedor) {
+                        arrow_drop_down  
+                    }@else {
+                        arrow_left
+                    }
+                </mat-icon>
+            </button>
+    
+            <mat-menu #menuProveedor="matMenu">
+                <button mat-menu-item (click)="openProveedorModalSave()">
+                    <mat-icon>add</mat-icon>
+                    <span>Proveedor nuevo</span>
+                </button>
+            </mat-menu>
+
+        </div>
+    </div>
+
+    @if(isMobile()){
+        <app-proveedor-listar-cards
+            [proveedores]="proveedores"
+            [isLoadingResult]="isCargando"
+            [isRateLimitReached]="errorConexion"
+            (refrescar)="onOpenOptionProveedor($event)">
+        </app-proveedor-listar-cards>
+        @if(paginaActual + 1 < totalPaginas){
+            <button mat-raised-button (click)="cargarMasProveedores()">Cargar Mas</button>
+        }
+    }@else {
+        <app-proveedor-listar
+            [proveedores]="proveedores"
+            [totalElementos]="totalElementos"
+            [paginaActual]="paginaActual"
+            [tamanioPagina]="tamanioPagina"
+            [isLoadingResult]="isCargando"
+            [isRateLimitReached]="errorConexion"
+            (paginaCambiada)="onPaginaCambiada($event)"
+            (editarProveedor)="onEditarProveedor($event)"
+            (detallesProveedor)="onDetallesProveedor($event)"
+            (crearMateriaPrima)="onCreateMateriaPrima($event)"
+            (getAllMateriaPrimaByProveedor)="onGetAllMateriaPrimaByProveedor($event)"
+            (cambiarNombreProveedor)="onChangeNameProveedor($event)"
+            (crearRepresentante)="onNewRepresenanteForProveedor($event)"
+            (getAllRepresentantesByIdProveedor)="onGetAllRepresentantesByProveedor($event)"
+            (getAllComprasByProveedor)="onGetAllComprasByProveedor($event)">
+        </app-proveedor-listar> 
+    }
+
+}@placeholder {
+    <p>Cargando Proveedores...</p>
+    <app-progress-animation></app-progress-animation>
+}

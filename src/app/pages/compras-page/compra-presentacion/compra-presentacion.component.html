@@ -1,0 +1,32 @@
+@defer(when !cargando){
+
+    <div class="presentation">
+        <div class="presentation-btn">
+            <p>Compras</p>
+        </div>
+    </div>
+
+    @if(isMobile()){
+        <app-compra-listar-card
+        [compras]="compras"
+        [isLoadingResult]="isCargando"
+        [isRateLimitReached]="errorConexion"
+        (refrescar)="onOpenOptionCompra($event)">
+        </app-compra-listar-card>
+    }@else {
+        <app-compra-listar-table
+            [compras]="compras"
+            [totalElementos]="totalElementos"
+            [paginaActual]="paginaActual"
+            [tamanioPagina]="tamanioPagina"
+            [isLoadingResult]="isCargando"
+            [isRateLimitReached]="errorConexion"
+        >
+        </app-compra-listar-table>
+    }
+
+
+}@placeholder {
+    <p>Cargando Compras...</p>
+    <app-progress-animation></app-progress-animation>
+}

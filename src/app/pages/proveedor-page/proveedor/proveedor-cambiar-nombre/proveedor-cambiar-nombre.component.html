@@ -1,0 +1,24 @@
+@if (isSubmitting){
+    <mat-progress-bar mode="query"></mat-progress-bar>
+}
+
+<p>CAMBIAR NOMBRE</p>
+
+<div class="content">
+    <mat-dialog-content>
+        <form [formGroup]="formCambiarNombre">
+            
+            <input type="number" hidden formControlName="idProveedor">
+            
+            <mat-form-field>
+                <mat-label>Nuevo Nombre: </mat-label>
+                <input type="text" matInput formControlName="nuevoNombre" (input)="toUpperCaseField('nuevoNombre')">
+            </mat-form-field>
+
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button mat-dialog-close="" (click)="closeModal()"><mat-icon>close</mat-icon>Cancelar</button>
+        <button mat-flat-button [disabled]="formCambiarNombre.invalid" (click)="updateChangeName()"><mat-icon>check</mat-icon>Cambiar</button>
+    </mat-dialog-actions>
+</div>

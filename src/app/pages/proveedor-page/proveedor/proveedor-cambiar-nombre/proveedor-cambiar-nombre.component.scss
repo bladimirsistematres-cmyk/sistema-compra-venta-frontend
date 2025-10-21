@@ -1,0 +1,13 @@
+p{
+    text-align: center;
+    font-size: 21px;
+}
+
+mat-dialog-actions{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+mat-form-field{
+    width: 100%;
+}

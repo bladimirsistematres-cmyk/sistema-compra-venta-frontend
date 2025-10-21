@@ -1,0 +1,157 @@
+@defer (when !isLoading) {
+    <div class="content-tilte">
+        <p><b>{{proveedor?.nombreComercial}}</b></p>
+        <button mat-icon-button matTooltip="Cerrar" (click)="closeModal()"><mat-icon>close</mat-icon></button>
+    </div>
+
+    <div class="content">
+        <mat-dialog-content>
+    
+            <span>PROVEEDOR</span>
+    
+            <div class="sub-content">
+                <span><b>ID: </b></span><span>{{ proveedor?.idProveedor }}</span>
+            </div>
+    
+            <mat-divider></mat-divider>
+            <div class="sub-content">
+                <span><b>NOMBRE COMERCIAL: </b></span><span>{{ proveedor?.nombreComercial }}</span>
+            </div>
+    
+            <mat-divider></mat-divider>
+            <div class="sub-content">
+                <span><b>IDENTIFICACIÓN FISCAL: </b></span><span>{{ proveedor?.identificacionFiscal }}</span>
+            </div>
+    
+            <mat-divider></mat-divider>
+            <div class="sub-content">
+                <span><b>CORREO ELECTRÓNICO: </b></span><span>
+                    @if (proveedor?.correoElectronico == null) {
+                        Sin Definir
+                    }@else {
+                        {{proveedor?.correoElectronico}}
+                    }
+                </span>
+            </div>
+    
+            <mat-divider></mat-divider>
+            <div class="sub-content">
+                <span><b>DIRECCIÓN: </b></span><span>{{ proveedor?.direccion }}</span>
+            </div>
+    
+            <mat-divider></mat-divider>
+            <div class="sub-content">
+                <span><b>SITIO WEB: </b></span><span>
+                    @if (proveedor?.enlacePagina == null) {
+                        Sin Definir
+                    }@else {
+                        <a [href]="proveedor?.enlacePagina">{{proveedor?.enlacePagina}}</a>
+                    }
+                </span>
+            </div>
+    
+            <mat-divider></mat-divider>
+            <div class="sub-content">
+                <span><b>FECHA CREACIÓN: </b></span><span>{{ proveedor?.fechaCreacion | date: 'yyyy-MM-dd' }}</span>
+            </div>
+    
+            <mat-divider></mat-divider>
+            <div class="sub-content">
+                <span><b>FECHA ACTUALIZACIÓN: </b></span><span>{{ proveedor?.fechaActualizacion | date: 'yyyy-MM-dd' }}</span>
+            </div>
+    
+            <mat-divider></mat-divider>
+            <div class="sub-content">
+                <span><b>TIPO PROVEEDOR: </b></span><span>{{ proveedor?.tipoProveedor }}</span>
+            </div>
+    
+            <span>REPRESENTANTE(S)</span>
+    
+            @for (index of representantes; track index){
+    
+                <div class="sub-content">
+                    <span><b>Id: </b></span><span>{{index.idRepresentante}}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>NOMBRE : </b></span><span>{{ index.nombre }}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>CARGO : </b></span><span>{{ index.cargo }}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>CEDULA IDENTIDAD : </b></span><span>{{ index.cedulaIdentidad }}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>TELEFONO FIJO : </b></span><span>
+                        @if(index.telefonoFijo == null){
+                            SIN DEFINIR
+                        }@else{
+                            {{index.telefonoFijo}}
+                        }
+                    </span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>TELEFONO CELULAR : </b></span><span>{{ index.telefonoCelular }}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>CORREO ELECTRÓNICO : </b></span><span>{{ index.correoElectronico }}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>DIRECCIÓN : </b></span><span>
+                        @if(index.direccion == null){
+                            SIN DEFINIR
+                        }@else{
+                            {{index.direccion}}
+                        }
+                    </span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>FECHA CREACIÓN : </b></span><span>{{ index.fechaCreacion | date: 'yyyy-MM-dd' }}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>FECHA ACTUALIZACIÓN : </b></span><span>{{ index.fechaActualizacion| date: 'yyyy-MM-dd' }}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><b>OBSERVACIONES : </b></span><span>
+                        @if(index.direccion == null){
+                            SIN OBSERVACIONES
+                        }@else{
+                            {{index.observaciones}}
+                        }
+                    </span>
+                </div>
+            }
+    
+        </mat-dialog-content>
+    </div>
+
+    <mat-dialog-actions>
+        <button mat-flat-button><mat-icon>picture_as_pdf</mat-icon>Exportar a PDF</button>
+    </mat-dialog-actions>
+
+}@placeholder {
+    <div class="content-placeholder">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>CARGANDO PROVEEDOR...</p>
+    </div>
+}

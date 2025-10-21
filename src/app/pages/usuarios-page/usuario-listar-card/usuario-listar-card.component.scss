@@ -1,0 +1,11 @@
+.card-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sub-content{
+    display: grid;
+    grid-template-columns: 200px auto;
+    margin: 10px 0 10px 0;
+}

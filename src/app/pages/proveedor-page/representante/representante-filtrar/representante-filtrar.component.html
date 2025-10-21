@@ -1,0 +1,19 @@
+<form>
+    <mat-form-field>
+        <mat-label>Buscar. </mat-label>
+        <input 
+            matInput 
+            [(ngModel)]="searchTerm"
+            name="searchTerm"
+            (ngModelChange)="onInputChange()"
+            placeholder="CAMPOS VALIDOS: NOMBRE, CARGO, CEDULA IDENTIDAD O NIT"
+            autocomplete="off"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+    
+        @if(isCargando){
+            <mat-progress-bar diameter="20" mode="indeterminate"></mat-progress-bar>
+        }
+    
+    </mat-form-field>
+</form>

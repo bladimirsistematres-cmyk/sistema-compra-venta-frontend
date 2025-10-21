@@ -1,0 +1,69 @@
+<p>ACCIONES DEL PROVEEDOR</p>
+
+<mat-nav-list>
+
+    <!-- Cambiar Nombre -->
+    <a mat-list-item (click)="onChangeNameProveedor()">
+        <span matListItemTitle>Cambiar Nombre</span>
+        <span matLine>Actualizar solor el nombre</span>
+        <span matListItemAvatar class="avatar"><mat-icon>edit</mat-icon></span>
+    </a>
+
+    <!-- Editar -->
+    <a mat-list-item (click)="onEditProveedor()">
+        <span matListItemTitle>Editar</span>
+        <span matLine>Modificar todos los datos</span>
+        <span matListItemAvatar class="avatar"><mat-icon>table_edit</mat-icon></span>
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <!-- Agregar Materia Prima -->
+    <a mat-list-item (click)="onMateriaPrimaSave()">
+        <span matListItemTitle>Agregar Materia Prima</span>
+        <span matLine>Registrar nuevo producto</span>
+        <span matListItemAvatar class="avatar"><mat-icon>add_shopping_cart</mat-icon></span>
+    </a>
+
+    <!-- Ver Materia Prima -->
+    <a mat-list-item (click)="onGetAllMateriaPrimaByProveedor()">
+        <span matListItemTitle>Ver Materias Primas</span>
+        <span matLine>Lista de productos</span>
+        <span matListItemAvatar class="avatar"><mat-icon>production_quantity_limits</mat-icon></span>
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <!-- Compras Realizadas -->
+    <a mat-list-item (click)="onGetAllComprasByProveedor()">
+        <span matListItemTitle>Compras Realizadas</span>
+        <span matLine>Lista de compras hechas al proveedor</span>
+        <span matListItemAvatar class="avatar"><mat-icon>history</mat-icon></span>
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <!-- Agregar Representantes -->
+    <a mat-list-item (click)="onRepresentanteSave()">
+        <span matListItemTitle>Agregar Representante</span>
+        <span matLine>Nuevo Contacto</span>
+        <span matListItemAvatar class="avatar"><mat-icon>person_add</mat-icon></span>
+    </a>
+
+    <!-- Ver Representantes -->
+    <a mat-list-item (click)="onGetAllRepresentantesByProveedor()">
+        <span matListItemTitle>Ver Representantes</span>
+        <span matLine>Lista de contactos</span>
+        <span matListItemAvatar class="avatar"><mat-icon>group</mat-icon></span>
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <!-- Informacion del Proveedor -->
+    <a mat-list-item (click)="onViewInformationProveedor()">
+        <span matListItemTitle>Información Proveedor</span>
+        <span matLine>Información general</span>
+        <span matListItemAvatar class="avatar"><mat-icon>info</mat-icon></span>
+    </a>
+
+</mat-nav-list>

@@ -1,0 +1,12 @@
+@defer(when !cargado){
+    <app-pais-listar 
+        [paises]="paises"
+        [isLoadingResult]="isCargando"
+        [isRateLimitReached]="errorConexion">
+    
+    </app-pais-listar>
+
+}@placeholder {
+    <p>Cargando Paises</p>
+    <app-progress-animation></app-progress-animation>
+}

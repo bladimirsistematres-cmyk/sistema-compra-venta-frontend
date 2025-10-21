@@ -1,0 +1,34 @@
+p{
+    text-align: center;
+    font-size: 21px;
+}
+
+.content{
+    padding: 10px 20px;
+    position: relative;
+}
+
+.content-tilte{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 40px;
+}
+
+form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+}
+
+
+@media (max-width: 850px){
+    form{
+        grid-template-columns: 1fr;
+    }
+
+    form mat-form-field:last-child {
+        grid-column: auto;
+    }
+}

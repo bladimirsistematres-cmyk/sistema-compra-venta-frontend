@@ -1,0 +1,19 @@
+@defer (when !cargando) {
+    <p>Ciudades</p>
+    <app-ciudad-listar 
+        [ciudades]="ciudades"
+        [totalElementos]="totalElementos"
+        [paginaActual]="paginaActual"
+        [tamanioPagina]="tamanioPagina"
+        (paginaCambiada)="onPaginaCambiada($event)"
+        (editarCiudad)="openCiudadModalSave($event)">
+    </app-ciudad-listar>
+
+    <div class="btn-footer">
+        <button mat-fab extended="" (click)="openCiudadModalSave()"><mat-icon>add</mat-icon>Agregar</button>
+    </div>
+
+}@placeholder {
+    <p>Cargando Ciudades...</p>
+    <app-progress-animation></app-progress-animation>
+}

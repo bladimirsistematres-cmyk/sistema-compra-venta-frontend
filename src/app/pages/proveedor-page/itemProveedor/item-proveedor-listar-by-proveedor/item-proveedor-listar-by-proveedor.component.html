@@ -1,0 +1,78 @@
+
+   
+    @if (isLoadingResult || isRateLimitReached){
+        <div class="example-loading-shade">
+            @if (isLoadingResult){
+                <mat-spinner [diameter]="50"></mat-spinner>
+            }
+            @if (isRateLimitReached){
+                <div class="example-rate-limit-reached">
+                    ...
+                </div>
+            }
+        </div>
+    }
+
+
+    <div class="content-title">
+        <p>ITEMS PROVEEDOR</p>
+        <button mat-icon-button matTooltip="Cerrar" (click)="closeModal()"><mat-icon>close</mat-icon></button>
+    </div>
+    
+    
+    <div class="content">
+        <mat-dialog-content>
+            @for(item of itemsProveedor; track item){
+                <mat-card appearance="outlined">
+                    <div class="card-header">
+                        <mat-card-header>
+                            <mat-card-title>TITULO</mat-card-title>
+                            <mat-card-subtitle>{{item.tipoItem}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <button mat-icon-button matTooltip="Acciones" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                    </div>
+                    <mat-card-content>
+
+                        <mat-divider></mat-divider>
+                        <div class="sub-content">
+                            <span><strong>PRECIO: </strong></span><span>{{item.precio}} Bs.</span>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="sub-content">
+                            <span><strong>DESCRIPCIÓN: </strong></span><span>{{item.descripcion}}</span>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="sub-content">
+                            <span><strong>FECHA REGISTRO: </strong></span><span>{{item.fechaCreacionItem | date: "yyyy-MM-dd"}}</span>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                        <div class="sub-content">
+                            <span><strong>REGISTRADO POR: </strong></span><span>{{item.nombreUsuario}}</span>
+                        </div>
+                    </mat-card-content>
+
+                    <mat-dialog-actions>
+                        <button mat-flat-button><mat-icon>add_shopping_cart</mat-icon> COMPRAR</button>
+                    </mat-dialog-actions>
+
+                </mat-card>
+    
+                <!-- MENU -->
+                <mat-menu #menu="matMenu" xPosition="before">
+        
+                    <!-- OPCION CAMBIAR NOMBRE -->
+                    <button mat-menu-item>
+                        <mat-icon>edit</mat-icon>
+                        <span>Cambiar Item</span>
+                    </button>
+        
+                </mat-menu>
+            }
+        </mat-dialog-content>
+    </div>
+
+
+

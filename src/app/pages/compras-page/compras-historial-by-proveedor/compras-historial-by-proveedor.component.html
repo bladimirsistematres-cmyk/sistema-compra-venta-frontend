@@ -1,0 +1,39 @@
+<div class="content-title">
+    <p>COMPRAS REALIZADAS A {{nombreComercial}}</p>
+    <button mat-icon-button matTooltip="Cerrar" (click)="closeModal()"><mat-icon>close</mat-icon></button>
+</div>
+
+@if(isLoading){
+    <mat-progress-bar mode="query"></mat-progress-bar>
+}
+
+@else if(!isLoading && compras.length === 0){
+    <p class="advertencia"><strong>No se tiene compras realizadas de este proveedor</strong></p>
+}
+
+@else{
+    <div class="content">
+    
+        <mat-dialog-content>
+    
+            @for (compra of compras; track compra){
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{compra.detalles.materiaPrima}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p><strong>ID COMPRA: </strong> {{compra.idCompra}}</p>
+                        <p><strong>TOTAL COMPRA: </strong> {{compra.totalCompra}}</p>
+                        <p><strong>FECHA COMPRA: </strong> {{compra.fechaCompra | date: 'yyyy-MM-dd'}}</p>
+                        <p><strong>PROVEEDOR: </strong> {{compra.nombreComercial}}</p>
+                        <p><strong>UNIDAD DE COMPRA: </strong> {{compra.detalles.cantidadCompra}} {{compra.detalles.unidadCompra}}</p>
+                        <p><strong>UNIDAD DE MEDIDA: </strong> {{compra.detalles.cantidadMedida}} {{compra.detalles.unidadMedida}}</p>
+                        <p><strong>REGISTRADO POR: </strong> {{compra.nombreUsuario}}</p>
+                    </mat-card-content>
+                </mat-card>
+            }
+    
+        </mat-dialog-content>
+    
+    </div>
+}

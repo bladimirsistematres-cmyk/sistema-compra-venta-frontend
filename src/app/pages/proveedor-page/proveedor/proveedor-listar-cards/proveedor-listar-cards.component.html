@@ -1,0 +1,60 @@
+@if(isLoadingResult || isRateLimitReached){
+    <div class="example-loading-shade">
+        @if(isLoadingResult){
+            <mat-spinner></mat-spinner>
+        }
+        @if(isRateLimitReached){
+            <div class="example-rate-limit-reached">
+                ...
+            </div>
+        }
+    </div>
+}
+
+<div class="example-container">
+    @for (proveedor of proveedores; track proveedor){
+        <mat-card>
+    
+            <div class="card-title">
+                <mat-card-header>
+                    <mat-card-title>{{proveedor.nombreComercial}}</mat-card-title>
+                    <mat-card-subtitle>{{proveedor.tipoProveedor}}</mat-card-subtitle>
+                </mat-card-header>
+                <button mat-icon-button matTooltip="Acciones" matTooltipPosition="left" (click)="openBottomSheet(proveedor)"><mat-icon>more_vert</mat-icon></button>
+            </div>
+    
+            <mat-card-content>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>ID: </strong></span><span>{{proveedor.idProveedor}}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>NIT O C.I.: </strong></span><span>{{proveedor.identificacionFiscal}}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>FECHA CREACIÓN: </strong></span><span>{{proveedor.fechaCreacion | date: "yyyy-MM-dd"}}</span>
+                </div>
+    
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>REPRESENTANTES: </strong></span>
+                    <span>
+                        @if(proveedor.tieneRepresentantes){
+                            SI
+                        }
+                        @else {
+                            NO
+                        }
+                    </span>
+                </div>
+    
+            </mat-card-content>
+            
+        </mat-card>
+    }
+</div>

@@ -1,0 +1,31 @@
+<div class="example-container">
+
+    @if(isLoadingResult || isRateLimitReached){
+        <div class="example-loading-shade">
+            @if(isLoadingResult){
+                <mat-spinner></mat-spinner>
+            }
+            @if(isRateLimitReached){
+                <div class="example-rate-limit-reached">
+                    ...
+                </div>
+            }
+        </div>
+    }
+
+    <div class="container-paises">
+        @for (pais of paises; track pais){
+            <mat-card>
+                <div class="header-card">
+                    <div class="card-header">
+                        <mat-card-header>
+                            <mat-card-title>{{pais.nombrePais}}</mat-card-title>
+                            <mat-card-subtitle>{{pais.idPais}}</mat-card-subtitle>
+                        </mat-card-header>
+                    </div>
+                    <button mat-icon-button matTooltip="Opciones"><mat-icon>more_vert</mat-icon></button>
+                </div>
+            </mat-card>
+        }
+    </div>
+</div>

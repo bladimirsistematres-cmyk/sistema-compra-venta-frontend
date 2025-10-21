@@ -1,0 +1,36 @@
+@if(isLoadingResult || isRateLimitReached){
+    <div class="example-loading-shade">
+        @if(isLoadingResult){
+            <mat-spinner></mat-spinner>
+        }
+        @if(isRateLimitReached){
+            <div class="example-rate-limit-reached">
+                ...
+            </div>
+        }
+    </div>
+}
+
+<div class="example-container">
+    @for (materia of materiaPrima; track materia) {
+        <mat-card>
+            <div class="card-title">
+                <mat-card-header>
+                    <mat-card-title>{{materia.nombreMateriaPrima}}</mat-card-title>
+                    <mat-card-subtitle>{{materia.idMateriaPrima}}</mat-card-subtitle>
+                </mat-card-header>
+                <button mat-icon-button matTooltip="Acciones" matTooltipPosition="left" (click)="openBottomSheet(materia)">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </div>
+
+            <mat-card-content>
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Stock: </strong></span><span>{{materia.stockActual}}</span>
+                </div>
+            </mat-card-content>
+
+        </mat-card>
+    }
+</div>

@@ -1,0 +1,59 @@
+form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+}
+
+mat-dialog-actions{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+p{
+    text-align: center;
+    font-size: 21px;
+}
+
+.content{
+    position: relative;
+}
+
+.box-1{
+    grid-column: span 2 / span 2;
+}
+
+.box-2{
+    grid-row-start: 2;
+}
+
+.box-3{
+    grid-row-start: 2;;
+}
+
+.box-4{
+    grid-column: span 2 / span 2;
+}
+
+.content-placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 7px;
+    padding: 10px 20px;
+}
+
+@media (max-width: 850px){
+    form{
+        grid-template-columns: 1fr;
+    }
+
+    .box-1, .box-4 {
+        grid-column: auto;
+    }
+
+    .box-2, .box-3 {
+        grid-row-start: auto;
+    }
+}

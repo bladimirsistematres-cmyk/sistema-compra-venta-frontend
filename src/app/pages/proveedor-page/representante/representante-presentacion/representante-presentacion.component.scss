@@ -1,0 +1,13 @@
+p{
+    font-size: 21px;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+.container-filter{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 30px;
+}

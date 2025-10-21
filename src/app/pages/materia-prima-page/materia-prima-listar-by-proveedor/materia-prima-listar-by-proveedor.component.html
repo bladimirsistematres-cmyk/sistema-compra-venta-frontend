@@ -1,0 +1,41 @@
+<div class="content-title">
+    <p>MATERIA PRIMA</p>
+    <button mat-icon-button matTooltip="Cerrar" (click)="closeModal()"><mat-icon>close</mat-icon></button>
+</div>  
+
+@if (idLoading){
+    <mat-progress-bar mode="query"></mat-progress-bar>
+}
+
+@else if(!idLoading && materiasPrimas.length === 0){
+    <p class="advertencia">Este proveedor <strong>{{nombreComercial}}</strong> no tiene materias primas registradas</p>
+}
+
+@else {
+    <div class="content">
+        
+        <mat-dialog-content>
+            
+            @for (materiaPrima of materiasPrimas; track materiaPrima){
+                <div class="card">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>{{materiaPrima.idMateriaPrima}}</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p><strong>MATERIA PRIMA: </strong>{{materiaPrima.nombreMateriaPrima}}</p>
+                            <p><strong>PROVEEDOR: </strong>{{materiaPrima.proveedor}}</p>
+                            <p><strong>DESCRIPCIÓN: </strong>{{materiaPrima.descripcion}}</p>
+                            <p><strong>USUARIO: </strong>{{materiaPrima.usuario}}</p>
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                            <button mat-flat-button (click)="onComprarMateriaPrima(materiaPrima.idProveedor, materiaPrima.idMateriaPrima, materiaPrima.nombreMateriaPrima, materiaPrima.proveedor)"><mat-icon>add_business</mat-icon> Comprar</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            }
+            
+        </mat-dialog-content>
+        
+    </div>
+}

@@ -1,0 +1,75 @@
+@if(isSubmitting){
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+<p>COMPRAR {{nombreMateriaPrima}}</p>
+
+<div class="content">
+
+    <mat-dialog-content>
+
+        <form [formGroup]="formMateriaPrimaComprar">
+
+            <div class="formMateriaPrimaPrincipal">
+                <input type="text" hidden formControlName="idProveedor">
+    
+                <mat-form-field>
+                    <mat-label>Proveedor:</mat-label>
+                    <input type="text" matInput [value]="nombreComercial" readonly="">
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Total Compra:</mat-label>
+                    <input type="number" matInput formControlName="totalCompra">
+                </mat-form-field>
+            </div>
+
+
+            <div formGroupName="detalle" class="formMateriaPrimaDetalles">
+                <mat-form-field>
+                    <mat-label>Unidad de Compra:</mat-label>
+                    <mat-select formControlName="unidadCompra">
+                        @for (unCompra of listaUnidadCompra; track unCompra) {
+                            <mat-option [value]="unCompra">{{unCompra}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Cantidad de Compra:</mat-label>
+                    <input type="number" matInput formControlName="cantidadCompra">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Unidad de Medida:</mat-label>
+                    <mat-select formControlName="unidadMedida">
+                        @for (unMedida of listaUnidadMedida; track unMedida) {
+                            <mat-option [value]="unMedida">{{unMedida}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Cantidad de Medida:</mat-label>
+                    <input type="number" matInput formControlName="cantidadMedida">
+                </mat-form-field>
+
+                <mat-form-field class="materiaPrima">
+                    <mat-label>Materia Prima:</mat-label>
+                    <input type="text" matInput [value]="nombreMateriaPrima" readonly="">
+                </mat-form-field>
+
+                <input type="text" hidden formControlName="materiaPrima">
+            </div>
+
+
+        </form>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button mat-dialog-close="" (click)="closeModal()"><mat-icon>close</mat-icon>Cancelar</button>
+        <button mat-flat-button [disabled]="formMateriaPrimaComprar.invalid" (click)="savedComprarMateriaPrima()"><mat-icon>check</mat-icon>Comprar</button>
+    </mat-dialog-actions>
+
+</div>

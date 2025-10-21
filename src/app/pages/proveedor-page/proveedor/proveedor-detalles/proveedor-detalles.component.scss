@@ -1,0 +1,32 @@
+p{
+    text-align: center;
+    font-size: 21px;
+}
+
+.content{
+    padding: 10px 20px;
+    position: relative;
+}
+
+.sub-content{
+    display: grid;
+    grid-template-columns: 200px auto;
+    row-gap: 10px;
+    margin: 10px 0 10px 0;
+}
+
+.content-placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 7px;
+    padding: 10px 20px;
+}
+
+.content-tilte{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 40px;
+}

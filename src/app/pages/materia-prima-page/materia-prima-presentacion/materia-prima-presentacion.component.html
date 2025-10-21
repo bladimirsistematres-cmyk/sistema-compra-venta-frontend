@@ -1,0 +1,37 @@
+@defer (when !cargado) {
+
+    <div class="presentation">
+
+        <div class="presentation-btn">
+            <button mat-button> <p>Materia Prima</p> </button>
+
+        </div>
+
+    </div>
+
+    @if(isMobile()){
+        <app-materia-prima-listar-card
+        [materiaPrima]="materiaPrima"
+        [isLoadingResult]="isCargando"
+        [isRateLimitReached]="errorConexion"
+        (refrescar)="onOpenOptionMateriaPrima($event)">
+
+        </app-materia-prima-listar-card>
+    }
+    @else {
+        <app-materia-prima-listar-tabla
+            [materiaPrima]="materiaPrima"
+            [totalElementos]="totalElementos"
+            [paginaActual]="paginaActual"
+            [tamanioPagina]="tamanioPagina"
+            [isLoadingResult]="isCargando"
+            [isRateLimitReached]="errorConexion"
+            (paginaCambiada)="onPaginaCambiada($event)"
+            (getAllComprasByMateriaPrima)="onGetAllCompraByMateriaPrima($event)">
+        </app-materia-prima-listar-tabla>
+    }
+
+}@placeholder {
+    <p>Cargando Materia Prima...</p>
+    <app-progress-animation></app-progress-animation>
+}

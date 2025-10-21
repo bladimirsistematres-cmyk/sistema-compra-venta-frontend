@@ -1,0 +1,15 @@
+p{
+    text-align: center;
+    font-size: 18px;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.content{
+    padding: 10px 20px;
+}

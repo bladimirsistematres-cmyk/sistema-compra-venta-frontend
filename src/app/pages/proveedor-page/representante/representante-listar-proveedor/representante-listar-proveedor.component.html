@@ -1,0 +1,40 @@
+<div class="content-title">
+    <p>REPRESENTANTES</p>
+    <button mat-icon-button matTooltip="Cerrar" (click)="closeModal()"><mat-icon>close</mat-icon></button>
+</div>
+
+@if(isLoading){
+    <mat-progress-bar mode="query"></mat-progress-bar>
+}
+
+@else if(!isLoading && representantes.length === 0){
+    <p class="advertencia">El proveedor <strong>{{nombreComercial}}</strong> no tiene representantes agregados</p>
+}
+
+@else {
+    <div class="content">
+    
+        <mat-dialog-content>
+    
+            @for (representante of representantes; track representante) {
+                <div class="card">
+                    <mat-card>
+                        <div class="card-header">
+                            <mat-card-header>
+                                <mat-card-title>{{representante.nombre}}</mat-card-title>
+                                <mat-card-subtitle>{{representante.cargo}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <button mat-icon-button matTooltip="Acciones"><mat-icon>more_vert</mat-icon></button>
+                        </div>
+                        <mat-card-content>
+                            <p><strong>CEDULA IDENTIDAD: </strong>{{representante.cedulaIdentidad}}</p>
+                            <p><strong>TELEFONO CELULAR: </strong>{{representante.telefonoCelular}}</p>
+                            <p><strong>FECHA CREACIÓN: </strong>{{representante.fechaCreacion | date: 'yyyy-MM-dd'}}</p>
+                        </mat-card-content>
+                    </mat-card>       
+                </div>
+            }
+    
+        </mat-dialog-content>
+    </div>
+}

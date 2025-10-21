@@ -1,0 +1,69 @@
+@if (isLoadingResult || isRateLimitReached){
+    <div class="example-loading-shade">
+        @if(isLoadingResult){
+            <mat-spinner></mat-spinner>
+        }
+        @if(isRateLimitReached){
+            <div class="example-rate-limit-reached">
+
+            </div>
+        }
+    </div>
+}
+
+<div class="example-container">
+    @for (user of usuarios; track user){
+        <mat-card>
+            <div class="card-title">
+                <mat-card-header>
+                    <mat-card-title>{{user.nombres}}</mat-card-title>
+                    <mat-card-subtitle>{{user.nombreUsuario}}</mat-card-subtitle>
+                </mat-card-header>
+                <button mat-icon-button matTooltip="Acciones" matTooltipPosition="left" (click)="openBottomSheet(user)">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </div>
+
+            <mat-card-content>
+                
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Id: </strong></span><span>{{user.id_usuario}}</span>
+                </div>
+
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Apellido Paterno: </strong></span><span>{{user.apellidoPaterno}}</span>
+                </div>
+
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Apellido Materno: </strong></span><span>{{user.apellidoMaterno}}</span>
+                </div>
+
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Carnet de Identidad: </strong></span><span>{{user.carnetIdentidad}}</span>
+                </div>
+
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Rol: </strong></span><span>{{user.role}}</span>
+                </div>
+
+                <mat-divider></mat-divider>
+                <div class="sub-content">
+                    <span><strong>Estado: </strong></span><span>
+                        @if(user.estado){
+                            ACTIVO
+                        }@else {
+                            INACTIVO
+                        }
+                    </span>
+                </div>
+
+            </mat-card-content>
+
+        </mat-card>
+    }
+</div>
